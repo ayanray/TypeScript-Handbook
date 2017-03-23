@@ -512,6 +512,18 @@ function createElement(tagName: string): Element {
 }
 ```
 
+To create an exhaustive mapping from a string literal type, you could use a map:
+```ts
+type Easing = "ease-in" | "ease-out" | "ease-in-out";
+
+const animationTimings: {[T in Easing]: string} = {
+    "ease-in": "100ms",
+    "ease-out": "200ms",
+    "ease-in-out": "100ms"
+};
+```
+Now if you add or remove a string from the string literal type ```Easing```, TypeScript will recognize that you are missing the key in ```animationTimings```.  
+
 # Discriminated Unions
 
 You can combine string literal types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
